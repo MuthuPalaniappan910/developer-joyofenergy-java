@@ -24,6 +24,10 @@ public class SeedingApplicationDataConfiguration {
     private static final String RENEWABLES_PRICE_PLAN_ID = "price-plan-1";
     private static final String STANDARD_PRICE_PLAN_ID = "price-plan-2";
 
+    /*
+        pricePlans() is invoked 2nd which returns the List of Price Plan
+    */
+
     @Bean
     public List<PricePlan> pricePlans() {
         final List<PricePlan> pricePlans = new ArrayList<>();
@@ -33,6 +37,16 @@ public class SeedingApplicationDataConfiguration {
         return pricePlans;
     }
 
+    /*
+       perMeterElectricityReadings Loads first & will invoke smartMeterToPricePlanAccounts()
+       which will return the key value pair.
+
+       Key - Smart Meter ID
+       Value - Price Pal
+
+       Once the above values are generated a call to ElectricityReadingsGenerator is made by
+       streaming and updating the values with Electricity Reading
+    */
     @Bean
     public Map<String, List<ElectricityReading>> perMeterElectricityReadings() {
         final Map<String, List<ElectricityReading>> readings = new HashMap<>();

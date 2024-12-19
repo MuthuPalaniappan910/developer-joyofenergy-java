@@ -2,6 +2,7 @@ package uk.tw.energy.service;
 
 import java.util.Map;
 import org.springframework.stereotype.Service;
+import uk.tw.energy.domain.PricePlan;
 
 @Service
 public class AccountService {
@@ -15,4 +16,5 @@ public class AccountService {
     public String getPricePlanIdForSmartMeterId(String smartMeterId) {
         return smartMeterToPricePlanAccounts.get(smartMeterId);
     }
+
 }

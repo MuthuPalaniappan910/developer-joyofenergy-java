@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 import uk.tw.energy.domain.ElectricityReading;
 
@@ -25,5 +27,17 @@ public class MeterReadingService {
             meterAssociatedReadings.put(smartMeterId, new ArrayList<>());
         }
         meterAssociatedReadings.get(smartMeterId).addAll(electricityReadings);
+    }
+
+    public List<ElectricityReading> checkIfSmartMeterIsPresentAndGetData(String smartMeterId) {
+
+        if(meterAssociatedReadings.get(smartMeterId)) {
+           //Exception
+        }
+        Optional<List<ElectricityReading>> getReadings = getReadings(smartMeterId);
+        if(getReadings.get().isEmpty()) {
+            //AC2 -> Exception
+        }
+        return getReadings.get();
     }
 }
